@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     ProgressBar progressBar;
-
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mcallback;
     String codesent;
 
