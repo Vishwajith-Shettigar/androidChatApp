@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Chatactivity"
+    android:background="@color/white"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="0dp"
+        android:background="#FD757BD3"
+        android:id="@+id/toolbar"
+
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            >
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+android:text="Lyka chat"
+android:textSize="25dp"
+    android:id="@+id/lykachat"
+    android:fontFamily="serif-monospace"
+    android:textStyle="bold"
+    android:textColor="@color/white"
+
+
+    />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+<com.google.android.material.tabs.TabLayout
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:id="@+id/chattablayout"
+    android:layout_below="@id/toolbar"
+    app:tabTextColor="@color/white"
+    app:tabSelectedTextColor="@color/teal_200"
+    app:tabIndicator="@color/teal_700"
+    android:backgroundTint="#757BD3"
+android:layout_marginTop="0dp"
+
+
+    >
+
+    <com.google.android.material.tabs.TabItem
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chats"
+
+
+android:id="@+id/tabchat"
+        />
+
+    <com.google.android.material.tabs.TabItem
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:id="@+id/tabstatus"
+        />
+
+    <com.google.android.material.tabs.TabItem
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calls"
+        android:id="@+id/tabcall"
+        />
+
+
+</com.google.android.material.tabs.TabLayout>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_below="@id/chattablayout"
+
+        android:layout_marginTop="0dp"
+        android:id="@+id/viewpager"
+
+
+        />
+
+</RelativeLayout>

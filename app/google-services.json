@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1041528485478",
+    "firebase_url": "https://lyka-chat-app-default-rtdb.firebaseio.com",
+    "project_id": "lyka-chat-app",
+    "storage_bucket": "lyka-chat-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041528485478:android:5be6acf23928851a495fa7",
+        "android_client_info": {
+          "package_name": "com.example.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041528485478-h38j5b70phnfu872ub7qctt9a5eqdn1o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chatapp",
+            "certificate_hash": "10951142f3a55ad0c0391962f5c6c98f26ee1177"
+          }
+        },
+        {
+          "client_id": "1041528485478-f006dn3nm5atnjhrk010aoebjmnats9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcKpHheh6cre_lvpqmrwGKt0cMZTbLfKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041528485478-f006dn3nm5atnjhrk010aoebjmnats9v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
