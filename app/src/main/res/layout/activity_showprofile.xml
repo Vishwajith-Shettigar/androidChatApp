@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Showprofile"
+    android:background="@color/white"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="0dp"
+        android:background="#FD757BD3"
+        android:id="@+id/toolbarshowprofile"
+
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            >
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+            android:id="@+id/showprofilebackbtn"
+
+android:background="@drawable/flag_transparent"
+                android:src="@drawable/back"
+
+android:layout_centerVertical="true"
+
+                />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textSize="25dp"
+                android:id="@+id/profiletext"
+                android:fontFamily="serif-monospace"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+android:layout_centerVertical="true"
+                android:padding="10dp"
+android:layout_toRightOf="@+id/showprofilebackbtn"
+                />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="130dp"
+        android:layout_below="@id/toolbarshowprofile"
+        android:layout_margin="30dp"
+        android:id="@+id/showimagecardView"
+
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/showimage"
+            android:src="@drawable/ic_launcher_foreground"
+            android:background="@color/teal_200"
+            android:scaleType="centerCrop"
+
+            />
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/showusername"
+        android:layout_width="match_parent"
+
+        android:layout_height="50dp"
+android:clickable="false"
+
+        android:gravity="center"
+        android:enabled="false"
+        android:layout_below="@id/showimagecardView"
+
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+
+        android:textColor="@color/black"
+
+        android:backgroundTint="@color/black"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+
+        android:inputType="textCapWords" />
+
+    <TextView
+        android:id="@+id/editprofile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/showusername"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:text="want to edit your profile ? click here"
+        android:textColor="#898383" />
+</RelativeLayout>
