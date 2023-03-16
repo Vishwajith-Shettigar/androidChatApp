@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FD758BD3"
+    android:padding="10dp"
+    android:paddingBottom="0dp"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/textrelative"
+        android:layout_toRightOf="@+id/usercardview"
+
+        >
+
+<TextView
+    android:id="@+id/nameofuser"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+android:text="name of user"
+    android:textSize="20dp"
+    android:textColor="@color/black"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="20dp"
+
+
+    />
+
+        <TextView
+            android:id="@+id/userchat"
+android:textColor="#030303"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="chat  bla bla blasssssssssssssssssssss bal al bkdb dbewdwebduedeuiwdbdbdedw sss"
+            android:textSize="15dp"
+android:maxLines="1"
+            android:layout_below="@+id/nameofuser"
+            android:layout_marginStart="20dp"
+
+
+            />
+
+
+
+    </RelativeLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:id="@+id/usercardview"
+        app:cardCornerRadius="55dp"
+        android:layout_centerVertical="true"
+        >
+
+<ImageView
+    android:id="@+id/userdp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/ic_launcher_foreground"
+    android:background="@drawable/ic_launcher_background"
+
+    />
+
+    </androidx.cardview.widget.CardView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#5B5656"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-5dp"
+        >
+
+
+
+    </RelativeLayout>
+</RelativeLayout>

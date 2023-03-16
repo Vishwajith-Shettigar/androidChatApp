@@ -107,7 +107,7 @@ storageReference=firebaseStorage.getReference();
            @Override
            public void onClick(View view) {
                startActivity(new Intent(Showprofile.this,Setprofileactivity.class));
-
+finish();
            }
        });
 
