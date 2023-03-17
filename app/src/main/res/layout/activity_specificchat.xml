@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Specificchat"
+
+    android:background="#7473BA"
+    >
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="0dp"
+        android:background="#FD757BD3"
+        android:id="@+id/toolbarspecificchat"
+
+        >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
+
+    >
+
+
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:id="@+id/specificchatrelative"
+           android:layout_toRightOf="@+id/userimage"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lyka chat"
+                android:textSize="20dp"
+                android:id="@+id/usernamesc"
+
+                android:textColor="@color/white"
+
+
+                />
+            <TextView
+                android:layout_below="@+id/usernamesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="offline"
+android:textColor="#211C1C"
+
+android:id="@+id/statussc"
+                android:textAllCaps="false"
+                />
+        </RelativeLayout>
+
+<androidx.cardview.widget.CardView
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+
+    android:id="@+id/userimage"
+    app:cardCornerRadius="40dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    >
+
+
+    <ImageView
+
+        android:id="@+id/imagesc"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
+
+android:scaleType="centerCrop"
+        android:background="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_launcher_foreground" />
+</androidx.cardview.widget.CardView>
+
+</RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+
+android:layout_above="@id/message"
+        android:layout_below="@+id/toolbarspecificchat"
+        android:id="@+id/specificchatrecyclerview"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+        android:id="@+id/sendcard"
+android:layout_marginRight="-57dp"
+        app:cardCornerRadius="50dp"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+
+        android:layout_marginBottom="5dp"
+      android:layout_alignRight="@+id/message">
+
+
+        <ImageView
+            android:id="@+id/sendbutn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/sendicon"
+            android:background="@drawable/flag_transparent"
+            android:padding="10dp"
+            android:layout_gravity="center"
+
+
+            />
+    </androidx.cardview.widget.CardView>
+    
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+android:id="@+id/message"
+        android:layout_alignParentBottom="true"
+android:background="@drawable/messageback"
+android:layout_marginRight="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="4dp"
+        android:hint="Enter a message"
+        android:textColor="@color/black"
+android:textColorHint="#6F6C6C"
+        android:padding="5dp"
+
+
+
+
+        />
+
+</RelativeLayout>

@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -57,7 +58,7 @@ private  String name;
 
 private  String imageAccessToken;
     private  static  int PICK_IMAGE=123;
-    private Uri imagepath;
+    private Uri imagepath=null;
 
 
     @Override
@@ -85,9 +86,12 @@ try {
                 @Override
                 public void onSuccess(Uri uri) {
                     imageAccessToken = uri.toString();
+
                     Picasso.get().load(uri).into(setimage);
                 }
             });
+
+
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
     databaseReference.addValueEventListener(new ValueEventListener() {
@@ -115,9 +119,10 @@ catch(Exception e)
         cardViewsetimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("*","image view ---------");
                 Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
 
-                startActivityForResult(intent,PICK_IMAGE);;
+                startActivityForResult(intent,PICK_IMAGE);
 
 
             }
@@ -137,9 +142,10 @@ catch(Exception e)
                     Toast.makeText(Setprofileactivity.this, "Enter name", Toast.LENGTH_SHORT).show();
                 }else{
 
-
+                    Log.e("*","first"+imageAccessToken);
                     setprofileprogressbar.setVisibility(View.VISIBLE);
                     saveUserData();
+                    Log.e("*","second"+imageAccessToken);
                     setprofileprogressbar.setVisibility(View.INVISIBLE);
                     startActivity(new Intent(Setprofileactivity.this,Chatactivity.class));
                     finish();
@@ -156,7 +162,7 @@ catch(Exception e)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-
+Log.e("*","yooooooooooooooooo");
         // if user selected a image fromm gallary
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK)
         {
@@ -165,7 +171,7 @@ catch(Exception e)
             setimage.setImageURI(imagepath);
         }
 
-
+Log.e("*","image path"+imagepath);
         super.onActivityResult(requestCode, resultCode, data);
 
 
@@ -197,51 +203,52 @@ catch(Exception e)
 
     private  void sendImagetoStorage()
     {
-
-        StorageReference iamgeRef=storageReference.child("images").child(firebaseAuth.getUid()).child("profilepic");
-
-
-
-        // image compression
-
-        Bitmap bitmap=null;
-
-        try{
-
-            bitmap=MediaStore.Images.Media.getBitmap(getContentResolver(),imagepath);
+if(imagepath!=null)
+        {
+            Log.e("*","image path not null");
+            StorageReference iamgeRef = storageReference.child("images").child(firebaseAuth.getUid()).child("profilepic");
 
 
+            // image compression
 
+            Bitmap bitmap = null;
+
+            try {
+
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagepath);
+
+
+            } catch (IOException e) {
+                Log.e("*", " exp " + e.toString());
+
+            }
+
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
+
+
+            byte[] data = byteArrayOutputStream.toByteArray();
+
+            // save in storage
+            UploadTask uploadTask = iamgeRef.putBytes(data);
+
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    iamgeRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            imageAccessToken = uri.toString();
+                            sendDatatocloudFirestore();
+                        }
+                    });
+                }
+            });
         }
-         catch (IOException e) {
-
-        }
-
-
-        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,25,byteArrayOutputStream);
-
-
-
-        byte[] data=byteArrayOutputStream.toByteArray();
-
-        // save in storage
-        UploadTask uploadTask=iamgeRef.putBytes(data);
-
-      uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-          @Override
-          public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-              iamgeRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                  @Override
-                  public void onSuccess(Uri uri) {
-                      imageAccessToken=uri.toString();
-                      sendDatatocloudFirestore();
-                  }
-              });
-          }
-      });
-
-
+else {
+    sendDatatocloudFirestore();
+}
 
     }
 
@@ -250,7 +257,7 @@ catch(Exception e)
     {
 
         DocumentReference documentReference=firebaseFirestore.collection("users").document(firebaseAuth.getUid());
-
+        Log.e("*",imageAccessToken);
         Map<String,Object> userdata=new HashMap<>();
 
         userdata.put("name",name);
@@ -262,7 +269,7 @@ catch(Exception e)
             @Override
             public void onSuccess(Void unused) {
 
-
+Log.e("*","success");
             }
         });
 
@@ -270,4 +277,22 @@ catch(Exception e)
 
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        DocumentReference documentReference=firebaseFirestore.collection("users").document(firebaseAuth.getUid());
+        documentReference.update("status","online");
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        DocumentReference documentReference=firebaseFirestore.collection("users").document(firebaseAuth.getUid());
+        documentReference.update("status","offline");
+    }
+
 }

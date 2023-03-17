@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Chatactivity extends AppCompatActivity {
 
@@ -27,12 +30,18 @@ public class Chatactivity extends AppCompatActivity {
     ViewPager viewPager;
     PagerAdapter pagerAdapter;
 
+    FirebaseFirestore firebaseFirestore;
+    FirebaseAuth firebaseAuth;
+
  Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatactivity);
+
+        firebaseFirestore=FirebaseFirestore.getInstance();
+        firebaseAuth=FirebaseAuth.getInstance();
 
 tableLayout=findViewById(R.id.chattablayout);
 mchat=findViewById(R.id.tabchat);
@@ -107,5 +116,22 @@ viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(ta
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+        DocumentReference documentReference=firebaseFirestore.collection("users").document(firebaseAuth.getUid());
+        documentReference.update("status","online");
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        DocumentReference documentReference=firebaseFirestore.collection("users").document(firebaseAuth.getUid());
+        documentReference.update("status","offline");
+    }
 
 }

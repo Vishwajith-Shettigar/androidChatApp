@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="50dp"
+    android:padding="20dp"
+    >
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:background="@drawable/senderchardrawebale"
+android:id="@+id/layoutformessage"
+
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:text=" h"
+
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:paddingLeft="35dp"
+        android:paddingRight="25dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="27dp"
+        android:id="@+id/sendermessage"
+
+
+
+        />
+    <TextView
+        android:id="@+id/timesendrmessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="09:56 pm"
+    android:layout_marginTop="10dp"
+      android:textColor="@color/white"
+android:textSize="10sp"
+
+        android:layout_toRightOf="@id/sendermessage"
+android:layout_alignBottom="@+id/sendermessage"
+        android:padding="7dp"
+        android:layout_marginLeft="-70dp"
+
+        />
+
+</RelativeLayout>
+
+</RelativeLayout>

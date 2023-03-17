@@ -2,7 +2,9 @@ package com.example.chatapp;
 
 import static android.widget.LinearLayout.VERTICAL;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +30,7 @@ public class Chatfragment extends Fragment {
     private FirebaseFirestore firebaseFirestore;
 private FirebaseAuth firebaseAuth;
 private FirestoreRecyclerAdapter<Firebasemodel,Noteviewholder> chatAdapter;
-
+    FirestoreRecyclerOptions<Firebasemodel>allusername;
 RecyclerView recyclerView;
 
 
@@ -36,19 +38,21 @@ RecyclerView recyclerView;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.chatfragment,container,false);
+Log.e("*","lolol=-0=--");
 
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseFirestore=FirebaseFirestore.getInstance();
         recyclerView=view.findViewById(R.id.recyclerviewchatfragment);
-        Query query=firebaseFirestore.collection("users");
-        FirestoreRecyclerOptions<Firebasemodel>allusername=new FirestoreRecyclerOptions.Builder<Firebasemodel>().setQuery(query,Firebasemodel.class).build();
+        Query query=firebaseFirestore.collection("users").whereNotEqualTo("UID",firebaseAuth.getUid());
+       allusername=new FirestoreRecyclerOptions.Builder<Firebasemodel>().setQuery(query,Firebasemodel.class).build();
 
         chatAdapter=new FirestoreRecyclerAdapter<Firebasemodel, Noteviewholder>(allusername) {
             @Override
             protected void onBindViewHolder(@NonNull Noteviewholder holder, int position, @NonNull Firebasemodel model) {
 
        holder.textviewuername.setText(model.getName());
-       String uri= model.getImage();
+       String uri= model.getImage()+" ";
+       Log.e("*","name"+model.getName());
                 Picasso.get().load(uri).into(holder.imageView);
 
 
@@ -56,6 +60,15 @@ RecyclerView recyclerView;
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        Intent intent=new Intent(getActivity(),Specificchat.class);
+                        intent.putExtra("UID",model.getUID());
+                        intent.putExtra("name",model.getName());
+                        intent.putExtra("image",model.getImage());
+                        intent.putExtra("status",model.getStatus());
+                        startActivity(intent);
+
+
                         Toast.makeText(getActivity(), "clicked", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -108,8 +121,10 @@ return  view;
     @Override
     public void onStart() {
         super.onStart();
-        chatAdapter.startListening();
 
+        Log.e("*","hot back 999999999910000099");
+
+        chatAdapter.startListening();
     }
 
     @Override

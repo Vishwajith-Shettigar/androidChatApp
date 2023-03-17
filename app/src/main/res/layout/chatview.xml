@@ -62,6 +62,7 @@ android:maxLines="1"
 
 <ImageView
     android:id="@+id/userdp"
+    android:scaleType="centerCrop"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:src="@drawable/ic_launcher_foreground"
